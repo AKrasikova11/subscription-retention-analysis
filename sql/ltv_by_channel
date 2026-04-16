@@ -1,0 +1,23 @@
+with 
+avg_revenue as (
+	select 
+    	s.acquisition_channel, 
+    	round(avg(s.subscription_length / 30.0 * 350), 2) as avg_revenue
+	from subscriptions s 
+	group by s.acquisition_channel
+),
+base_table as (
+	select ar.acquisition_channel,
+		ar.avg_revenue,
+		case 
+			when ar.acquisition_channel = 'ads' then 500
+			when ar.acquisition_channel = 'organic' then 100
+			else 200
+		end as CAC
+	from avg_revenue ar
+)
+select acquisition_channel, 
+	avg_revenue as ltv, 
+	cac, 
+	round(avg_revenue / cac, 2) as "ltv/cac"
+from base_table
