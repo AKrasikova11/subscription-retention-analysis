@@ -125,6 +125,12 @@ Retention рассчитывался как доля пользователей,
 
 ---
 
+## 📊 Визуализация retention
+
+![Retention Heatmap](images/heatmap_retention.png)
+
+---
+
 ## 🔍 Интерпретация результатов
 
 Анализ показал наличие выраженного **early churn** в канале ads.
